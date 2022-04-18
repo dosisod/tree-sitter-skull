@@ -1,0 +1,454 @@
+======
+no-op statement
+======
+
+noop
+
+------
+
+(source_file
+  (stmts
+    (noop_stmt)))
+
+======
+return statement
+======
+
+return
+
+------
+
+(source_file
+  (stmts
+    (return_stmt)))
+
+======
+int exprs
+======
+
+return 1
+return 0b1100
+return 0o12345670
+return 0xABCDEFabcdef1234567890
+return -123
+
+-----------
+
+(source_file
+  (stmts
+    (return_stmt
+      (expr
+        (int))))
+  (stmts
+   (return_stmt
+    (expr
+     (int))))
+  (stmts
+   (return_stmt
+    (expr
+     (int))))
+  (stmts
+   (return_stmt
+    (expr
+     (int))))
+  (stmts
+   (return_stmt
+    (expr
+      (int)))))
+
+=======
+bool exprs
+=======
+
+return true
+return false
+
+---------
+
+(source_file
+  (stmts
+   (return_stmt
+    (expr
+     (bool))))
+  (stmts
+   (return_stmt
+    (expr
+     (bool)))))
+
+========
+float exprs
+========
+
+return 123.456
+return -123.456
+return Infinity
+return -Infinity
+
+---------
+
+(source_file
+  (stmts
+   (return_stmt
+    (expr
+     (float))))
+  (stmts
+   (return_stmt
+    (expr
+     (float))))
+  (stmts
+   (return_stmt
+    (expr
+     (identifier))))
+  (stmts
+   (return_stmt
+    (expr
+     (float)))))
+
+
+==========
+rune exprs
+==========
+
+return 'x'
+
+---------
+
+(source_file
+  (stmts
+   (return_stmt
+    (expr
+     (rune)))))
+
+
+=========
+string exprs
+=========
+
+return ""
+return "x"
+
+------
+
+(source_file
+  (stmts
+   (return_stmt
+    (expr
+     (string))))
+  (stmts
+   (return_stmt
+    (expr
+     (string)))))
+
+
+=========
+numerical binary exprs
+=========
+
+return 1 + 2
+return 1 - 2
+return 1 * 2
+return 1 / 2
+return 1 << 2
+return 2 >> 1
+return 1 ^ 2
+
+--------
+
+(source_file
+  (stmts
+    (return_stmt
+      (expr
+        (add_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (sub_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (mult_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (div_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (lshift_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (rshift_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (pow_expr
+          (expr
+            (int))
+          (expr
+            (int)))))))
+
+=========
+boolean binary exprs
+=========
+
+return true and false
+return true or false
+return true xor false
+return true is false
+return true isnt false
+return 1 < 2
+return 1 <= 2
+return 1 > 2
+return 1 >= 2
+
+--------
+
+(source_file
+  (stmts
+    (return_stmt
+      (expr
+        (and_expr
+          (expr
+            (bool))
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (or_expr
+          (expr
+            (bool))
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (xor_expr
+          (expr
+            (bool))
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (is_expr
+          (expr
+            (bool))
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (isnt_expr
+          (expr
+            (bool))
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (lt_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (lte_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (gt_expr
+          (expr
+            (int))
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (gte_expr
+          (expr
+            (int))
+          (expr
+            (int)))))))
+
+======
+unary exprs
+======
+
+return not true
+return - 1
+return &x
+return *x
+
+-------
+
+(source_file
+  (stmts
+    (return_stmt
+      (expr
+        (not_expr
+          (expr
+            (bool))))))
+  (stmts
+    (return_stmt
+      (expr
+        (unary_negate_expr
+          (expr
+            (int))))))
+  (stmts
+    (return_stmt
+      (expr
+        (ref_expr
+          (expr
+            (identifier))))))
+  (stmts
+    (return_stmt
+      (expr
+        (deref_expr
+          (expr
+            (identifier)))))))
+
+=======
+func statement/expr
+=======
+
+f()
+f(x)
+f(x, y)
+return f()
+
+--------
+
+(source_file
+  (stmts
+    (func_expr
+      (identifier)))
+  (stmts
+    (func_expr
+      (identifier)
+        (expr
+          (identifier))))
+  (stmts
+    (func_expr
+      (identifier)
+      (expr
+        (identifier))
+      (expr
+        (identifier))))
+  (stmts
+    (return_stmt
+      (expr
+        (func_expr
+          (identifier))))))
+
+=======
+while statement
+=======
+
+while true { noop }
+
+-------
+
+(source_file
+  (stmts
+    (while_loop
+      (expr
+        (bool))
+      (stmts
+        (noop_stmt)))))
+
+=======
+if statement
+=======
+
+if true { noop }
+
+-------
+
+(source_file
+  (stmts
+    (if_block
+      (expr
+        (bool))
+      (stmts
+        (noop_stmt)))))
+
+=======
+elif statement
+=======
+
+elif true { noop }
+
+-------
+
+(source_file
+  (stmts
+    (elif_block
+      (expr
+        (bool))
+      (stmts
+        (noop_stmt)))))
+
+=======
+else statement
+=======
+
+else { noop }
+
+-------
+
+(source_file
+  (stmts
+    (else_block
+      (stmts
+        (noop_stmt)))))
+
+========
+comments
+========
+
+# single line
+
+#{
+multi line
+#}
+
+----------
+
+
+(source_file
+  (stmts
+    (comment))
+  (stmts
+    (comment)))

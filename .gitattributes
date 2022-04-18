@@ -1,0 +1,2 @@
+/src/** linguist-vendored -diff
+/examples/* linguist-vendored -diff
