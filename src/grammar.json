@@ -190,6 +190,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "paren_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "lshift_expr"
         },
         {
@@ -657,6 +661,23 @@
           }
         ]
       }
+    },
+    "paren_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expr"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "func_expr": {
       "type": "SEQ",

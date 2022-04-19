@@ -53,6 +53,7 @@ module.exports = grammar({
       $.unary_negate_expr,
       $.ref_expr,
       $.deref_expr,
+      $.paren_expr,
       $.lshift_expr,
       $.rshift_expr,
       $.pow_expr,
@@ -93,6 +94,12 @@ module.exports = grammar({
     unary_negate_expr: $ => prec.left(seq('-', $.expr)),
     ref_expr: $ => prec.left(seq('&', $.expr)),
     deref_expr: $ => prec.left(seq('*', $.expr)),
+
+    paren_expr: $ => seq(
+      '(',
+      $.expr,
+      ')'
+    ),
 
     func_expr: $ => seq(
       $.identifier,

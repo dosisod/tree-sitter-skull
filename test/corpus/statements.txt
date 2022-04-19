@@ -452,3 +452,21 @@ multi line
     (comment))
   (stmts
     (comment)))
+
+
+========
+paren expr
+========
+
+return (1)
+
+----------
+
+
+(source_file
+  (stmts
+    (return_stmt
+      (expr
+        (paren_expr
+          (expr
+            (int)))))))
