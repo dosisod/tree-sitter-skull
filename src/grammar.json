@@ -55,6 +55,10 @@
         {
           "type": "SYMBOL",
           "name": "else_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
         }
       ]
     },

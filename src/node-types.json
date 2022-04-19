@@ -40,6 +40,11 @@
     "fields": {}
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "continue_stmt",
     "named": true,
     "fields": {}
@@ -520,6 +525,10 @@
       "types": [
         {
           "type": "break_stmt",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {

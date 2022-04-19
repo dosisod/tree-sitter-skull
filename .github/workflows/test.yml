@@ -1,0 +1,16 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: NPM Install
+        run: npm i
+
+      - name: Run tests
+        run: npx tree-sitter-cli generate && npx tree-sitter test
