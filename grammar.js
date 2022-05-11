@@ -34,11 +34,8 @@ module.exports = grammar({
     ),
 
     var_def_stmt: $ => choice(
-      seq(
-        $.identifier,
-        ':=',
-        $.expr
-      )
+      seq($.identifier, ':=', $.expr),
+      seq($.new_identifier, alias($.identifier, $.type), '=', $.expr),
     ),
 
     expr: $ => choice(
@@ -116,6 +113,8 @@ module.exports = grammar({
     ),
 
     identifier: $ => /[A-Za-z][A-Za-z0-9_]*/,
+    new_identifier: $ => /[A-Za-z][A-Za-z0-9_]*:/,
+    type: $ => $.identifier,
 
     int: $ => choice(
       /-?\d+/,

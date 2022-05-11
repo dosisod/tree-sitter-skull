@@ -5,6 +5,8 @@
 (func_expr
   (identifier) @function)
 
+(type) @type
+
 [
   (int)
   (float)

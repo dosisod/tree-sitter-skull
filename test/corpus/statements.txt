@@ -470,3 +470,26 @@ return (1)
         (paren_expr
           (expr
             (int)))))))
+
+
+==========
+var def stmt
+==========
+
+x := 1
+x: Int = 1
+
+----------
+
+(source_file
+  (stmts
+    (var_def_stmt
+      (identifier)
+      (expr
+        (int))))
+  (stmts
+    (var_def_stmt
+      (new_identifier)
+      (type)
+      (expr
+        (int)))))

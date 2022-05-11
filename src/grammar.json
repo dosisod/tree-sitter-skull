@@ -138,6 +138,32 @@
               "name": "expr"
             }
           ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "new_identifier"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              "named": true,
+              "value": "type"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "expr"
+            }
+          ]
         }
       ]
     },
@@ -740,6 +766,14 @@
     "identifier": {
       "type": "PATTERN",
       "value": "[A-Za-z][A-Za-z0-9_]*"
+    },
+    "new_identifier": {
+      "type": "PATTERN",
+      "value": "[A-Za-z][A-Za-z0-9_]*:"
+    },
+    "type": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "int": {
       "type": "CHOICE",

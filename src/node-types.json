@@ -648,6 +648,14 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "new_identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
         }
       ]
     }
@@ -751,6 +759,10 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
     "type": ">",
     "named": false
   },
@@ -807,6 +819,10 @@
     "named": false
   },
   {
+    "type": "new_identifier",
+    "named": true
+  },
+  {
     "type": "noop",
     "named": false
   },
@@ -825,6 +841,10 @@
   {
     "type": "true",
     "named": false
+  },
+  {
+    "type": "type",
+    "named": true
   },
   {
     "type": "unreachable",
