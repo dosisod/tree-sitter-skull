@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/dosisod/tree-sitter-skull#readme",
   "dependencies": {
-    "nan": "^2.15.0"
+    "nan": "^2.16.0"
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.20.6"
