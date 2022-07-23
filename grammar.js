@@ -18,7 +18,8 @@ module.exports = grammar({
       $.if_block,
       $.elif_block,
       $.else_block,
-      $.comment
+      $.comment,
+      $.namespace_block,
     ),
 
     noop_stmt: $ => prec.left('noop'),
@@ -33,9 +34,12 @@ module.exports = grammar({
       )
     ),
 
-    var_def_stmt: $ => choice(
-      seq($.identifier, ':=', $.expr),
-      seq($.new_identifier, alias($.identifier, $.type), '=', $.expr),
+    var_def_stmt: $ => seq(
+      optional(choice('mut', 'export')),
+      choice(
+        seq($.identifier, ':=', $.expr),
+        seq($.new_identifier, alias($.identifier, $.type), '=', $.expr),
+      ),
     ),
 
     expr: $ => choice(
@@ -171,6 +175,14 @@ module.exports = grammar({
 
     else_block: $ => seq(
       'else',
+      '{',
+      $.stmts,
+      '}'
+    ),
+
+    namespace_block: $ => seq(
+      'namespace',
+      $.identifier,
       '{',
       $.stmts,
       '}'

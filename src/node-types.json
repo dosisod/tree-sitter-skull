@@ -405,6 +405,25 @@
     }
   },
   {
+    "type": "namespace_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "stmts",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "noop_stmt",
     "named": true,
     "fields": {}
@@ -568,6 +587,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "namespace_block",
           "named": true
         },
         {
@@ -799,6 +822,10 @@
     "named": false
   },
   {
+    "type": "export",
+    "named": false
+  },
+  {
     "type": "false",
     "named": false
   },
@@ -816,6 +843,14 @@
   },
   {
     "type": "isnt",
+    "named": false
+  },
+  {
+    "type": "mut",
+    "named": false
+  },
+  {
+    "type": "namespace",
     "named": false
   },
   {

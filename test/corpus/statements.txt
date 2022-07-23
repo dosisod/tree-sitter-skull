@@ -478,6 +478,8 @@ var def stmt
 
 x := 1
 x: Int = 1
+mut x := 1
+export x := 1
 
 ----------
 
@@ -492,4 +494,31 @@ x: Int = 1
       (new_identifier)
       (type)
       (expr
+        (int))))
+  (stmts
+    (var_def_stmt
+      (identifier)
+      (expr
+        (int))))
+  (stmts
+    (var_def_stmt
+      (identifier)
+      (expr
         (int)))))
+
+==========
+namespace block
+==========
+
+namespace x {
+  noop
+}
+
+----------
+
+(source_file
+  (stmts
+    (namespace_block
+      (identifier)
+      (stmts
+        (noop_stmt)))))

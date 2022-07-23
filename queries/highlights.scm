@@ -1,4 +1,7 @@
-(string) @string
+[
+  (string)
+  (rune)
+] @string
 
 (comment) @comment
 
@@ -48,4 +51,14 @@
   "if"
   "elif"
   "else"
+  "namespace"
+  "mut"
+  "export"
 ] @keyword
+
+[
+  "{"
+  "}"
+  "("
+  ")"
+] @punctuation.bracket
