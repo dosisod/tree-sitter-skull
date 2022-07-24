@@ -507,6 +507,21 @@ export x := 1
         (int)))))
 
 ==========
+var assign stmt
+==========
+
+x = 1
+
+----------
+
+(source_file
+  (stmts
+    (var_assign_stmt
+      (identifier)
+      (expr
+        (int)))))
+
+==========
 namespace block
 ==========
 
@@ -522,3 +537,16 @@ namespace x {
       (identifier)
       (stmts
         (noop_stmt)))))
+
+==========
+import stmt
+==========
+
+import x
+
+----------
+
+(source_file
+  (stmts
+    (import_stmt
+      (identifier))))

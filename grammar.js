@@ -13,6 +13,7 @@ module.exports = grammar({
       $.return_stmt,
       $.unreachable_stmt,
       $.var_def_stmt,
+      $.var_assign_stmt,
       $.func_expr,
       $.while_loop,
       $.if_block,
@@ -20,6 +21,7 @@ module.exports = grammar({
       $.else_block,
       $.comment,
       $.namespace_block,
+      $.import_stmt,
     ),
 
     noop_stmt: $ => prec.left('noop'),
@@ -41,6 +43,8 @@ module.exports = grammar({
         seq($.new_identifier, alias($.identifier, $.type), '=', $.expr),
       ),
     ),
+
+    var_assign_stmt: $ => seq($.identifier, '=', $.expr),
 
     expr: $ => choice(
       $.float,
@@ -116,7 +120,7 @@ module.exports = grammar({
       ')'
     ),
 
-    identifier: $ => /[A-Za-z][A-Za-z0-9_]*/,
+    identifier: $ => /[A-Za-z](\.?[A-Za-z0-9_])*/,
     new_identifier: $ => /[A-Za-z][A-Za-z0-9_]*:/,
     type: $ => $.identifier,
 
@@ -187,6 +191,8 @@ module.exports = grammar({
       $.stmts,
       '}'
     ),
+
+    import_stmt: $ => seq('import', $.identifier),
 
     comment: $ => choice(
       /\#.*/,

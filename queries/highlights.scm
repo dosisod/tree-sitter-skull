@@ -54,6 +54,7 @@
   "namespace"
   "mut"
   "export"
+  "import"
 ] @keyword
 
 [

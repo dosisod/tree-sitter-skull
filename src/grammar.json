@@ -38,6 +38,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "var_assign_stmt"
+        },
+        {
+          "type": "SYMBOL",
           "name": "func_expr"
         },
         {
@@ -63,6 +67,10 @@
         {
           "type": "SYMBOL",
           "name": "namespace_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_stmt"
         }
       ]
     },
@@ -194,6 +202,23 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "var_assign_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expr"
         }
       ]
     },
@@ -795,7 +820,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[A-Za-z][A-Za-z0-9_]*"
+      "value": "[A-Za-z](\\.?[A-Za-z0-9_])*"
     },
     "new_identifier": {
       "type": "PATTERN",
@@ -1015,6 +1040,19 @@
         {
           "type": "STRING",
           "value": "}"
+        }
+      ]
+    },
+    "import_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
