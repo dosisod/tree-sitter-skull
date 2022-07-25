@@ -38,20 +38,16 @@ return -123
   (stmts
     (return_stmt
       (expr
-        (int))))
-  (stmts
+        (int)))
    (return_stmt
     (expr
-     (int))))
-  (stmts
+     (int)))
    (return_stmt
     (expr
-     (int))))
-  (stmts
+     (int)))
    (return_stmt
     (expr
-     (int))))
-  (stmts
+     (int)))
    (return_stmt
     (expr
       (int)))))
@@ -69,8 +65,7 @@ return false
   (stmts
    (return_stmt
     (expr
-     (bool))))
-  (stmts
+     (bool)))
    (return_stmt
     (expr
      (bool)))))
@@ -90,16 +85,13 @@ return -Infinity
   (stmts
    (return_stmt
     (expr
-     (float))))
-  (stmts
+     (float)))
    (return_stmt
     (expr
-     (float))))
-  (stmts
+     (float)))
    (return_stmt
     (expr
-     (identifier))))
-  (stmts
+     (identifier)))
    (return_stmt
     (expr
      (float)))))
@@ -133,8 +125,7 @@ return "x"
   (stmts
    (return_stmt
     (expr
-     (string))))
-  (stmts
+     (string)))
    (return_stmt
     (expr
      (string)))))
@@ -162,48 +153,42 @@ return 1 ^ 2
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (sub_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (mult_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (div_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (lshift_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (rshift_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (pow_expr
@@ -236,64 +221,56 @@ return 1 >= 2
           (expr
             (bool))
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (or_expr
           (expr
             (bool))
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (xor_expr
           (expr
             (bool))
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (is_expr
           (expr
             (bool))
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (isnt_expr
           (expr
             (bool))
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (lt_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (lte_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (gt_expr
           (expr
             (int))
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (gte_expr
@@ -319,20 +296,17 @@ return *x
       (expr
         (not_expr
           (expr
-            (bool))))))
-  (stmts
+            (bool)))))
     (return_stmt
       (expr
         (unary_negate_expr
           (expr
-            (int))))))
-  (stmts
+            (int)))))
     (return_stmt
       (expr
         (ref_expr
           (expr
-            (identifier))))))
-  (stmts
+            (identifier)))))
     (return_stmt
       (expr
         (deref_expr
@@ -353,20 +327,17 @@ return f()
 (source_file
   (stmts
     (func_expr
-      (identifier)))
-  (stmts
+      (identifier))
     (func_expr
       (identifier)
         (expr
-          (identifier))))
-  (stmts
+          (identifier)))
     (func_expr
       (identifier)
       (expr
         (identifier))
       (expr
-        (identifier))))
-  (stmts
+        (identifier)))
     (return_stmt
       (expr
         (func_expr
@@ -449,8 +420,7 @@ multi line
 
 (source_file
   (stmts
-    (comment))
-  (stmts
+    (comment)
     (comment)))
 
 
@@ -488,19 +458,16 @@ export x := 1
     (var_def_stmt
       (identifier)
       (expr
-        (int))))
-  (stmts
+        (int)))
     (var_def_stmt
       (new_identifier)
       (type)
       (expr
-        (int))))
-  (stmts
+        (int)))
     (var_def_stmt
       (identifier)
       (expr
-        (int))))
-  (stmts
+        (int)))
     (var_def_stmt
       (identifier)
       (expr
@@ -569,15 +536,13 @@ external f()
     (func_decl
       (identifier)
       (stmts
-        (noop_stmt))))
-  (stmts
+        (noop_stmt)))
     (func_decl
       (identifier)
       (new_identifier)
       (type)
       (stmts
-        (noop_stmt))))
-  (stmts
+        (noop_stmt)))
     (func_decl
       (identifier)
       (new_identifier)
@@ -585,12 +550,10 @@ external f()
       (new_identifier)
       (type)
       (stmts
-        (noop_stmt))))
-  (stmts
+        (noop_stmt)))
     (func_decl
       (identifier)
       (stmts
-        (noop_stmt))))
-      (stmts
-        (external_func_decl
-          (identifier))))
+        (noop_stmt)))
+    (external_func_decl
+      (identifier))))

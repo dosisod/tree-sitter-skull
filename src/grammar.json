@@ -3,13 +3,17 @@
   "word": "identifier",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "stmts"
-      }
+      "type": "SYMBOL",
+      "name": "stmts"
     },
     "stmts": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_stmt"
+      }
+    },
+    "_stmt": {
       "type": "CHOICE",
       "members": [
         {

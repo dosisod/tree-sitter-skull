@@ -8,9 +8,11 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat($.stmts),
+    source_file: $ => $.stmts,
 
-    stmts: $ => choice(
+    stmts: $ => repeat1($._stmt),
+
+    _stmt: $ => choice(
       $.break_stmt,
       $.continue_stmt,
       $.noop_stmt,
