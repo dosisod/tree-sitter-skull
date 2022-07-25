@@ -237,9 +237,59 @@
     }
   },
   {
+    "type": "external_func_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "new_identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "float",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "func_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "new_identifier",
+          "named": true
+        },
+        {
+          "type": "stmts",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "func_expr",
@@ -597,6 +647,14 @@
           "named": true
         },
         {
+          "type": "external_func_decl",
+          "named": true
+        },
+        {
+          "type": "func_decl",
+          "named": true
+        },
+        {
           "type": "func_expr",
           "named": true
         },
@@ -658,6 +716,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "unary_negate_expr",
@@ -868,6 +931,10 @@
     "named": false
   },
   {
+    "type": "external",
+    "named": false
+  },
+  {
     "type": "false",
     "named": false
   },
@@ -925,7 +992,7 @@
   },
   {
     "type": "type",
-    "named": true
+    "named": false
   },
   {
     "type": "unreachable",

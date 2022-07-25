@@ -8,6 +8,15 @@
 (func_expr
   (identifier) @function)
 
+(func_decl
+  (identifier) @function)
+
+(external_func_decl
+  (identifier) @function)
+
+(new_identifier) @variable
+(identifier) @variable
+
 (type) @type
 
 [
@@ -55,6 +64,7 @@
   "mut"
   "export"
   "import"
+  "external"
 ] @keyword
 
 [

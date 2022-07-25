@@ -550,3 +550,47 @@ import x
   (stmts
     (import_stmt
       (identifier))))
+
+==========
+func decl
+==========
+
+f() { noop }
+f(x: Int) { noop }
+f(x: Int, y: Int) { noop }
+
+export f() { noop }
+
+external f()
+
+----------
+(source_file
+  (stmts
+    (func_decl
+      (identifier)
+      (stmts
+        (noop_stmt))))
+  (stmts
+    (func_decl
+      (identifier)
+      (new_identifier)
+      (type)
+      (stmts
+        (noop_stmt))))
+  (stmts
+    (func_decl
+      (identifier)
+      (new_identifier)
+      (type)
+      (new_identifier)
+      (type)
+      (stmts
+        (noop_stmt))))
+  (stmts
+    (func_decl
+      (identifier)
+      (stmts
+        (noop_stmt))))
+      (stmts
+        (external_func_decl
+          (identifier))))

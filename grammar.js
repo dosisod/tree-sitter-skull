@@ -3,6 +3,10 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  conflicts: $ => [
+    [$.func_decl, $.func_expr],
+  ],
+
   rules: {
     source_file: $ => repeat($.stmts),
 
@@ -21,6 +25,8 @@ module.exports = grammar({
       $.else_block,
       $.comment,
       $.namespace_block,
+      $.func_decl,
+      $.external_func_decl,
       $.import_stmt,
     ),
 
@@ -40,7 +46,7 @@ module.exports = grammar({
       optional(choice('mut', 'export')),
       choice(
         seq($.identifier, ':=', $.expr),
-        seq($.new_identifier, alias($.identifier, $.type), '=', $.expr),
+        seq($.new_identifier, $.type, '=', $.expr),
       ),
     ),
 
@@ -106,7 +112,7 @@ module.exports = grammar({
       ')'
     ),
 
-    func_expr: $ => seq(
+    func_expr: $ => prec.left(seq(
       $.identifier,
       '(',
       optional(
@@ -118,11 +124,11 @@ module.exports = grammar({
         ),
       ),
       ')'
-    ),
+    )),
 
     identifier: $ => /[A-Za-z](\.?[A-Za-z0-9_])*/,
     new_identifier: $ => /[A-Za-z][A-Za-z0-9_]*:/,
-    type: $ => $.identifier,
+    type: $ => alias($.identifier, 'type'),
 
     int: $ => choice(
       /-?\d+/,
@@ -191,6 +197,34 @@ module.exports = grammar({
       $.stmts,
       '}'
     ),
+
+    _func_param: $ => seq(
+      $.new_identifier,
+      $.type
+    ),
+
+    _func_header: $ => prec.right(seq(
+      $.identifier,
+      '(',
+      optional(
+        seq(
+          repeat(seq($._func_param, ',')),
+          $._func_param
+        )
+      ),
+      ')',
+      optional($.type)
+    )),
+
+    func_decl: $ => seq(
+      optional('export'),
+      $._func_header,
+      '{',
+      $.stmts,
+      '}'
+    ),
+
+    external_func_decl: $ => seq('external', $._func_header),
 
     import_stmt: $ => seq('import', $.identifier),
 
