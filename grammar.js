@@ -1,3 +1,6 @@
+const gen_binary_expr = ($, oper) => prec.left(seq($.expr, oper, $.expr));
+const gen_unary_expr = ($, oper) => prec.left(seq(oper, $.expr));
+
 module.exports = grammar({
   name: 'skull',
 
@@ -32,10 +35,10 @@ module.exports = grammar({
       $.import_stmt,
     ),
 
-    noop_stmt: $ => prec.left('noop'),
-    unreachable_stmt: $ => prec.left('unreachable'),
-    break_stmt: $ => prec.left('break'),
-    continue_stmt: $ => prec.left('continue'),
+    noop_stmt: _ => prec.left('noop'),
+    unreachable_stmt: _ => prec.left('unreachable'),
+    break_stmt: _ => prec.left('break'),
+    continue_stmt: _ => prec.left('continue'),
 
     return_stmt: $ => prec.right(
       seq(
@@ -85,28 +88,28 @@ module.exports = grammar({
       $.bool
     ),
 
-    add_expr: $ => prec.left(seq($.expr, '+', $.expr)),
-    sub_expr: $ => prec.left(seq($.expr, '-', $.expr)),
-    mult_expr: $ => prec.left(seq($.expr, '*', $.expr)),
-    div_expr: $ => prec.left(seq($.expr, '/', $.expr)),
-    lshift_expr: $ => prec.left(seq($.expr, '<<', $.expr)),
-    rshift_expr: $ => prec.left(seq($.expr, '>>', $.expr)),
-    pow_expr: $ => prec.left(seq($.expr, '^', $.expr)),
+    add_expr: $ => gen_binary_expr($, '+'),
+    sub_expr: $ => gen_binary_expr($, '-'),
+    mult_expr: $ => gen_binary_expr($, '*'),
+    div_expr: $ => gen_binary_expr($, '/'),
+    lshift_expr: $ => gen_binary_expr($, '<<'),
+    rshift_expr: $ => gen_binary_expr($, '>>'),
+    pow_expr: $ => gen_binary_expr($, '^'),
 
-    and_expr: $ => prec.left(seq($.expr, 'and', $.expr)),
-    or_expr: $ => prec.left(seq($.expr, 'or', $.expr)),
-    xor_expr: $ => prec.left(seq($.expr, 'xor', $.expr)),
-    is_expr: $ => prec.left(seq($.expr, 'is', $.expr)),
-    isnt_expr: $ => prec.left(seq($.expr, 'isnt', $.expr)),
-    lt_expr: $ => prec.left(seq($.expr, '<', $.expr)),
-    lte_expr: $ => prec.left(seq($.expr, '<=', $.expr)),
-    gt_expr: $ => prec.left(seq($.expr, '>', $.expr)),
-    gte_expr: $ => prec.left(seq($.expr, '>=', $.expr)),
-    not_expr: $ => prec.left(seq('not', $.expr)),
+    and_expr: $ => gen_binary_expr($, 'and'),
+    or_expr: $ => gen_binary_expr($, 'or'),
+    xor_expr: $ => gen_binary_expr($, 'xor'),
+    is_expr: $ => gen_binary_expr($, 'is'),
+    isnt_expr: $ => gen_binary_expr($, 'isnt'),
+    lt_expr: $ => gen_binary_expr($, '<'),
+    lte_expr: $ => gen_binary_expr($, '<='),
+    gt_expr: $ => gen_binary_expr($, '>'),
+    gte_expr: $ => gen_binary_expr($, '>='),
 
-    unary_negate_expr: $ => prec.left(seq('-', $.expr)),
-    ref_expr: $ => prec.left(seq('&', $.expr)),
-    deref_expr: $ => prec.left(seq('*', $.expr)),
+    not_expr: $ => gen_unary_expr($, 'not'),
+    unary_negate_expr: $ => gen_unary_expr($, '-'),
+    ref_expr: $ => gen_unary_expr($, '&'),
+    deref_expr: $ => gen_unary_expr($, '*'),
 
     paren_expr: $ => seq(
       '(',
@@ -120,42 +123,37 @@ module.exports = grammar({
       optional(
         seq(
           $.expr,
-          optional(
-            repeat(seq(',', $.expr))
-          )
+          repeat(seq(',', $.expr))
         ),
       ),
       ')'
     )),
 
-    identifier: $ => /[A-Za-z](\.?[A-Za-z0-9_])*/,
-    new_identifier: $ => /[A-Za-z][A-Za-z0-9_]*:/,
+    identifier: _ => /[A-Za-z](\.?[A-Za-z0-9_])*/,
+    new_identifier: _ => /[A-Za-z][A-Za-z0-9_]*:/,
     type: $ => alias($.identifier, 'type'),
 
-    int: $ => choice(
+    int: _ => choice(
       /-?\d+/,
       /0b[10_]+/,
       /0o[0-7_]+/,
       /0x[A-Fa-f0-9_]+/
     ),
 
-    float: $ => choice(
+    float: _ => choice(
       /-?[0-9]+\.[0-9]+/,
       /-?Infinity/
     ),
 
-    bool: $ => choice(
-      'true',
-      'false'
-    ),
+    bool: _ => choice('true', 'false'),
 
-    rune: $ => seq(
+    rune: _ => seq(
       '\'',
       /./, // TODO: add escape sequence support
       '\''
     ),
 
-    string: $ => seq(
+    string: _ => seq(
       '"',
       optional(repeat(/./)), // TODO: add escape sequence support
       '"'
@@ -230,7 +228,7 @@ module.exports = grammar({
 
     import_stmt: $ => seq('import', $.identifier),
 
-    comment: $ => choice(
+    comment: _ => choice(
       /\#.*/,
       seq('#{', repeat(/./), '#}')
     )
