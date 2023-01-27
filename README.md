@@ -22,7 +22,7 @@ $ npx tree-sitter-cli generate
 
 Add the following to your `init.lua` file:
 
-```
+```lua
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.skull = {
   install_info = {
